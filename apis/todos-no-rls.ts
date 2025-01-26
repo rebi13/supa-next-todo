@@ -39,3 +39,53 @@ export const getTodosBySearch = async (terms: string) => {
 
   return result.data;
 };
+
+// todoList 생성하기
+export const createTodo = async (content: string) => {
+  const supabase = createSupabaseBrowserClient();
+  const result = await supabase
+    .from("todos_no_rls")
+    .insert({
+      content,
+    })
+    .select();
+
+  return result.data;
+};
+
+// todoList 수정하기
+export const updateTodo = async (id: number, content: string) => {
+  const supabase = createSupabaseBrowserClient();
+  const result = await supabase
+    .from("todos_no_rls")
+    .update({
+      content,
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", id)
+    .select();
+
+  return result.data;
+};
+
+// todoList Soft 삭제
+export const deleteTodoSoft = async (id: number) => {
+  const supabase = createSupabaseBrowserClient();
+  const result = await supabase
+    .from("todos_no_rls")
+    .update({
+      deleted_at: new Date().toISOString(),
+    })
+    .eq("id", id)
+    .select();
+
+  return result.data;
+};
+
+// todoList Hard 삭제
+export const deleteTodoHard = async (id: number) => {
+  const supabase = createSupabaseBrowserClient();
+  const result = await supabase.from("todos_no_rls").delete().eq("id", id);
+
+  return result.data;
+};
