@@ -1,23 +1,12 @@
 "use client";
 
-import {
-  createTodo,
-  deleteTodoSoft,
-  getTodoById,
-  getTodos,
-  getTodosBySearch,
-  updateTodo,
-} from "@/apis/todos-no-rls";
-import { useEffect } from "react";
+import useTodosController from "../hooks/useTodosController";
 
 const TodoContainer = () => {
-  useEffect(() => {
-    // createTodo("next.js에서 todo를 생성함");
-    // getTodos();
-    // getTodoById(6);
-    // getTodosBySearch("study");
-    // deleteTodoSoft(8);
-  }, []);
+  const { loading, todos } = useTodosController();
+
+  console.log(">> loading", loading);
+  console.log(">>todos", todos);
 
   return <div>TodoContainer</div>;
 };
