@@ -37,6 +37,12 @@
 
 - 서버 액션은 한 번 로직을 짰는데 서버에서 쓸 수 있고 클라이언트에서도 쓸 수 있다. 이건 Next.js 기 때문에 Next.js가 도와주는거라 보면 된다.
 
+## 구글 로그인 구현 3단계
+
+1. Google Cloud API Oauth 셋팅
+2. Auth UI
+3. Callback 처리 (PKCE)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
