@@ -3,17 +3,17 @@ import useHydrate from "@/hooks/useHydrate";
 import { createSupabaseBrowserClient } from "@/lib/client/supabase";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const AuthUI = () => {
   const [user, setUser] = useState<any>();
   const supabase = createSupabaseBrowserClient();
   const isMount = useHydrate();
 
-  const getUserInfo = async () => {
+  const getUserInfo = useCallback(async () => {
     const result = await supabase.auth.getUser();
     if (result?.data?.user) setUser(result?.data?.user);
-  };
+  }, [supabase]);
 
   const handleLogout = async () => {
     supabase.auth.signOut();
@@ -22,7 +22,7 @@ const AuthUI = () => {
 
   useEffect(() => {
     getUserInfo();
-  }, []);
+  }, [getUserInfo]);
 
   if (!isMount) return null;
 
