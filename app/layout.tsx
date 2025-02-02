@@ -17,7 +17,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   // 루트레이아웃에서 유저정보를 가져오면 페이지 로딩이 느려질 수 있음
-  const user = await getUser();
+  const user = await getUser({ serverComponent: true });
 
   return (
     <html lang="en">
