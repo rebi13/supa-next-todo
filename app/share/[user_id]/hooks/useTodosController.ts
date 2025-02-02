@@ -11,14 +11,14 @@ import { useEffect, useState } from "react";
 
 export type TodoDto = Database["public"]["Tables"]["todos_with_rls"]["Row"];
 
-const useTodosController = (ownerUserId = "") => {
+const useTodosController = (userId = "") => {
   const [loading, setLoading] = useState(false);
   const [todos, setTodos] = useState<TodoDto[]>([]);
 
   const onGetTodos = async () => {
     setLoading(true);
     try {
-      const resultTodos = await getTodoByUserId(ownerUserId);
+      const resultTodos = await getTodoByUserId(userId);
       if (resultTodos) setTodos(resultTodos);
     } catch (error) {
       console.log(error);
